@@ -13,17 +13,21 @@ struct Rate: Identifiable {
 }
 
 struct ContentView: View {
-    let rates = [
-        Rate(code: "USD", selling: 41.18),
-        Rate(code: "EUR", selling: 47.92),
-        Rate(code: "GBP", selling: 55.41),
-    ]
+    @State private var rates: [Rate] = []
+    private let service = RateService()
     var body: some View {
         List(rates) { rate in
             HStack {
                 Text(rate.code)
                 Spacer()
                 Text(rate.selling, format: .number.precision(.fractionLength(4)))
+            }
+        }
+        .task{
+            do{
+                rates = try await service.fetchRates()
+            }catch{
+                print("Hata \(error)")
             }
         }
     }
