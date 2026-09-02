@@ -16,16 +16,29 @@ struct ContentView: View {
     @StateObject private var viewModel = RatesViewModel()
     
     var body: some View {
-        List(viewModel.rates) { rate in
-            HStack {
-                Text(rate.code)
-                Spacer()
-                Text(rate.selling, format: .number.precision(.fractionLength(4)))
+        Group{
+            if viewModel.isLoading{
+                ProgressView("kurlar yükleniyor")
+            }else if let errorMessage = viewModel.errorMessage{
+                ContentUnavailableView(
+                    "Bağlantı sorunu",
+                    systemImage: "wifi.slash",
+                    description: Text(errorMessage)
+                )
+            }else{
+                List(viewModel.rates) { rate in
+                    HStack{
+                        Text(rate.code)
+                        Spacer()
+                        Text(rate.selling, format: .number.precision(.fractionLength(4)))
+                    }
+                }
             }
         }
-        .task{
+        
+        .task {
             await viewModel.load()
-            }
+        }
         }
     }
 

@@ -10,8 +10,20 @@ import Foundation
 struct RateService {
     func fetchRates() async throws -> [Rate] {
         let url = URL(string: "https://www.tcmb.gov.tr/kurlar/today.xml")!
-        let (data, _) = try await URLSession.shared.data(from: url)
-        return RateParser().parse(data)
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let http = response as? HTTPURLResponse,
+              http.statusCode == 200 else{
+            throw URLError(.badServerResponse)
+        }
+        
+        let rates = RateParser().parse(data)
+        guard !rates.isEmpty else {
+            throw URLError(.badServerResponse)
+        }
+        
+        return rates
+       
     }
 }
 
