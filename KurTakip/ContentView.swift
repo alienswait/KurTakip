@@ -13,10 +13,10 @@ struct Rate: Identifiable {
 }
 
 struct ContentView: View {
-    @State private var rates: [Rate] = []
-    private let service = RateService()
+    @StateObject private var viewModel = RatesViewModel()
+    
     var body: some View {
-        List(rates) { rate in
+        List(viewModel.rates) { rate in
             HStack {
                 Text(rate.code)
                 Spacer()
@@ -24,14 +24,11 @@ struct ContentView: View {
             }
         }
         .task{
-            do{
-                rates = try await service.fetchRates()
-            }catch{
-                print("Hata \(error)")
+            await viewModel.load()
             }
         }
     }
-}
+
 #Preview {
         ContentView()
     }
