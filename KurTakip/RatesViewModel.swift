@@ -16,16 +16,27 @@ final class RatesViewModel: ObservableObject {
     @Published private(set) var errorMessage: String?
     
     private let service = RateService()
+    private let cache = RatesCache()
     
     func load() async {
+        
+        if let cachedRates = cache.load() {
+            rates = cachedRates
+            
+        }
         
         isLoading = true
         errorMessage = nil
         
         do{
             rates = try await service.fetchRates()
+            cache.save(rates)
         } catch {
-            errorMessage = "Veri alınırken hata meydana geldi. Bağlantını kontrol etmeyi deneyin."
+            if rates.isEmpty {
+                errorMessage = "Kurlar yüklenemedi. Bağlantını kontrol et."
+            } else {
+                errorMessage = "Güncellenemedi, son kayıtlı kurlar gösteriliyor."
+            }
         }
         
         isLoading = false

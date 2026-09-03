@@ -6,42 +6,45 @@
 //
 
 import SwiftUI
-struct Rate: Identifiable {
-    let id = UUID()
-    let code: String
-    let selling: Double
-}
 
 struct ContentView: View {
     @StateObject private var viewModel = RatesViewModel()
-    
+
     var body: some View {
-        Group{
-            if viewModel.isLoading{
-                ProgressView("kurlar yükleniyor")
-            }else if let errorMessage = viewModel.errorMessage{
+        Group {
+            if viewModel.isLoading && viewModel.rates.isEmpty {
+                ProgressView("Kurlar yükleniyor...")
+            } else if let errorMessage = viewModel.errorMessage,
+                      viewModel.rates.isEmpty {
                 ContentUnavailableView(
                     "Bağlantı sorunu",
                     systemImage: "wifi.slash",
                     description: Text(errorMessage)
                 )
-            }else{
-                List(viewModel.rates) { rate in
-                    HStack{
-                        Text(rate.code)
-                        Spacer()
-                        Text(rate.selling, format: .number.precision(.fractionLength(4)))
+            } else {
+                List {
+                    if let errorMessage = viewModel.errorMessage {
+                        Text(errorMessage)
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    }
+
+                    ForEach(viewModel.rates) { rate in
+                        HStack {
+                            Text(rate.code)
+                            Spacer()
+                            Text(rate.selling, format: .number.precision(.fractionLength(4)))
+                        }
                     }
                 }
             }
         }
-        
         .task {
             await viewModel.load()
         }
-        }
     }
+}
 
 #Preview {
-        ContentView()
-    }
+    ContentView()
+}
