@@ -14,14 +14,20 @@ struct ContentView: View {
         Group {
             if viewModel.isLoading && viewModel.rates.isEmpty {
                 ProgressView("Kurlar yükleniyor...")
-            } else if let errorMessage = viewModel.errorMessage,
-                      viewModel.rates.isEmpty {
-                ContentUnavailableView(
-                    "Bağlantı sorunu",
-                    systemImage: "wifi.slash",
-                    description: Text(errorMessage)
-                )
-            } else {
+            }  else if let message = viewModel.errorMessage,
+                        viewModel.rates.isEmpty {
+                  ContentUnavailableView {
+                      Label("Bağlantı sorunu", systemImage: "wifi.slash")
+                  } description: {
+                      Text(message)
+                  } actions: {
+                      Button("Tekrar dene") {
+                          Task {
+                              await viewModel.load()
+                          }
+                      }
+                  }
+              } else {
                 List {
                     if let errorMessage = viewModel.errorMessage {
                         Text(errorMessage)
@@ -40,6 +46,9 @@ struct ContentView: View {
             }
         }
         .task {
+            await viewModel.load()
+        }
+        .refreshable {
             await viewModel.load()
         }
     }
