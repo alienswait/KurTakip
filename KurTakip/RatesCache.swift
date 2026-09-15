@@ -7,25 +7,25 @@
 
 import Foundation
 
-struct RatesCache {
+protocol RatesCacheProtocol {
+    func save(_ rates: [Rate])
+    func load() -> [Rate]?
+}
+
+struct RatesCache: RatesCacheProtocol {
     
     private var fileURL: URL {
         let folder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-        
         return folder.appendingPathComponent("rates.json")
-     
     }
     
-    func save(_ rates: [Rate]){
-        
-        guard let data = try? JSONEncoder().encode(rates) else {return}
+    func save(_ rates: [Rate]) {
+        guard let data = try? JSONEncoder().encode(rates) else { return }
         try? data.write(to: fileURL)
     }
     
     func load() -> [Rate]? {
-            guard let data = try? Data(contentsOf: fileURL) else { return nil }
-            return try? JSONDecoder().decode([Rate].self, from: data)
-        }
-    
-    
+        guard let data = try? Data(contentsOf: fileURL) else { return nil }
+        return try? JSONDecoder().decode([Rate].self, from: data)
+    }
 }

@@ -16,11 +16,14 @@ final class RatesViewModel: ObservableObject {
     @Published private(set) var errorMessage: String?
     
     private let service: RateServiceProtocol
-
-    init(service: RateServiceProtocol) {
+    private let cache : RatesCacheProtocol
+    
+    init (service: RateServiceProtocol, cache: RatesCacheProtocol){
         self.service = service
+        self.cache = cache
     }
-    private let cache = RatesCache()
+    
+    
     
     func load() async {
         
