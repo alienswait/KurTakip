@@ -4,7 +4,8 @@ TCMB verisiyle çalışan iOS döviz kuru uygulaması. SwiftUI ile geliştiriliy
 
 ## Durum
 
-🚧 Geliştirme aşamasında. Şu an çalışan: kur listesi, TCMB bağlantısı, XML çözümleme.
+🚧 Geliştirme aşamasında. Şu an çalışan: kur listesi, TCMB bağlantısı,
+XML çözümleme, çevrimdışı erişim, yükleniyor ve hata durumları, birim testleri.
 
 ## Yapı
 
@@ -13,9 +14,14 @@ TCMB verisiyle çalışan iOS döviz kuru uygulaması. SwiftUI ile geliştiriliy
 - `RatesCache` — kurları diske JSON olarak kaydeder ve okur
 - `RatesViewModel` — ekran durumunu yönetir (veri, yükleniyor, hata)
 - `ContentView` — sadece görüntüler
+- `KurTakipTests` — ViewModel testleri
 
 Ekran kodu verinin nereden geldiğini bilmiyor. ViewModel de XML diye bir
 şeyin varlığından habersiz. Her katman yalnızca bir alt katmanı tanıyor.
+
+Ağ ve önbellek katmanları protokol arkasında. ViewModel ne TCMB'yi tanıyor
+ne dosya sistemini; sadece "kur getiren bir şey" ve "kaydeden bir şey"
+olduğunu biliyor.
 
 
 ## Karşılaştığım sorunlar
@@ -38,6 +44,11 @@ gönderiyor. Bölme yapılmazsa yen 30 lira görünüyor, gerçek değeri 0,30.
 **Bazı para birimlerinde fiyat boş geliyor.** XDR'nin `ForexSelling` alanı
 boş. `Double("")` nil döndürdüğü için bu kayıtları listeye hiç eklemiyorum.
 
+**Testin yakaladığı bir tasarım hatası.** Ağ katmanını protokole çevirirken
+önbellek katmanını atlamıştım. İki test aynı disk dosyasını paylaştığı için
+ikinci test, birincinin bıraktığı veriyi okuyup kalıyordu. Önbelleği de
+protokole çevirince her test kendi bellek içi kopyasıyla çalışır hale geldi.
+
 
 ## Kararlar
 
@@ -54,6 +65,12 @@ Caches klasörüne yazmak yeterli oldu.
 **Neden Caches klasörü.** iOS depolama azaldığında bu klasörü silebiliyor.
 Kur verisi için doğru tercih, çünkü kaybolsa da yeniden indirilebilir.
 Kullanıcının kendi verisi olsaydı Documents klasörü kullanılırdı.
+
+**Testler neden sahte servisle çalışıyor.** Gerçek servisle test yazmak
+internete bağımlı olurdu: bağlantı yoksa test kalır, TCMB yavaşsa test
+yavaşlar, hafta sonu farklı sonuç verirdi. Bağımlılıkları protokol arkasına
+alıp testlerde sahte uygulamalarını veriyorum. Testler milisaniyeler içinde
+bitiyor ve her seferinde aynı sonucu veriyor.
 
 ## Sırada
 
