@@ -10,6 +10,7 @@ TCMB verisiyle çalışan iOS döviz kuru uygulaması. SwiftUI ile geliştiriliy
 
 - `RateService` — TCMB'den veriyi indirir, HTTP durumunu kontrol eder
 - `RateParser` — gelen XML'i Rate nesnelerine çevirir
+- `RatesCache` — kurları diske JSON olarak kaydeder ve okur
 - `RatesViewModel` — ekran durumunu yönetir (veri, yükleniyor, hata)
 - `ContentView` — sadece görüntüler
 
@@ -37,7 +38,23 @@ gönderiyor. Bölme yapılmazsa yen 30 lira görünüyor, gerçek değeri 0,30.
 **Bazı para birimlerinde fiyat boş geliyor.** XDR'nin `ForexSelling` alanı
 boş. `Double("")` nil döndürdüğü için bu kayıtları listeye hiç eklemiyorum.
 
+
+## Kararlar
+
+**Cache-first veri akışı.** Uygulama açılışında önce diskteki son kayıtlı
+kurlar gösteriliyor, ağ güncellemesi arkadan geliyor. Ağ hatası durumunda
+elde veri varsa hata ekranı yerine küçük bir uyarı satırı çıkıyor —
+eski veri, hiç veri olmamasından iyi.
+
+**Neden JSON dosyası, neden SwiftData değil.** Veri küçük (20 kayıt,
+iki alan) ve ilişkisel değil. SwiftData'nın kurulum maliyeti bu boyutta
+bir veri için getirisinden fazlaydı. Codable ile JSON'a çevirip
+Caches klasörüne yazmak yeterli oldu.
+
+**Neden Caches klasörü.** iOS depolama azaldığında bu klasörü silebiliyor.
+Kur verisi için doğru tercih, çünkü kaybolsa da yeniden indirilebilir.
+Kullanıcının kendi verisi olsaydı Documents klasörü kullanılırdı.
+
 ## Sırada
 
-- Çevrimdışı erişim
 - Detay ekranı ve grafik
