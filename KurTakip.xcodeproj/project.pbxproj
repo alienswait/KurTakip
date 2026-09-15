@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		27D972BA3059D3C800689950 /* RatesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B33059D3C800689950 /* RatesListView.swift */; };
+		27D972BB3059D3C800689950 /* KurTakipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B43059D3C800689950 /* KurTakipApp.swift */; };
+		27D972BC3059D3C800689950 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B53059D3C800689950 /* Rate.swift */; };
+		27D972BD3059D3C800689950 /* RatesCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B63059D3C800689950 /* RatesCache.swift */; };
+		27D972BE3059D3C800689950 /* RateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B73059D3C800689950 /* RateService.swift */; };
+		27D972BF3059D3C800689950 /* RatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B83059D3C800689950 /* RatesViewModel.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		27D972C83059E00700689950 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -18,6 +27,12 @@
 
 /* Begin PBXFileReference section */
 		2794FDEE3047508000892133 /* KurTakip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KurTakip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		27D972B33059D3C800689950 /* RatesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesListView.swift; sourceTree = "<group>"; };
+		27D972B43059D3C800689950 /* KurTakipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KurTakipApp.swift; sourceTree = "<group>"; };
+		27D972B53059D3C800689950 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
+		27D972B63059D3C800689950 /* RatesCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesCache.swift; sourceTree = "<group>"; };
+		27D972B73059D3C800689950 /* RateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateService.swift; sourceTree = "<group>"; };
+		27D972B83059D3C800689950 /* RatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesViewModel.swift; sourceTree = "<group>"; };
 		27D972C43059E00700689950 /* KurTakipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KurTakipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -55,6 +70,10 @@
 		2794FDE53047508000892133 = {
 			isa = PBXGroup;
 			children = (
+				27D972D23059F45000689950 /* Features */,
+				27D972D13059F43700689950 /* Models */,
+				27D972CE3059F3DE00689950 /* Core */,
+				27D972CD3059F3C200689950 /* App */,
 				2794FDF03047508000892133 /* KurTakip */,
 				27D972C53059E00700689950 /* KurTakipTests */,
 				2794FDEF3047508000892133 /* Products */,
@@ -68,6 +87,64 @@
 				27D972C43059E00700689950 /* KurTakipTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		27D972CD3059F3C200689950 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				27D972B43059D3C800689950 /* KurTakipApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		27D972CE3059F3DE00689950 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				27D972D03059F41C00689950 /* Storage */,
+				27D972CF3059F3EF00689950 /* Network */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		27D972CF3059F3EF00689950 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				27D972B73059D3C800689950 /* RateService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		27D972D03059F41C00689950 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				27D972B63059D3C800689950 /* RatesCache.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		27D972D13059F43700689950 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				27D972B53059D3C800689950 /* Rate.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		27D972D23059F45000689950 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				27D972D33059F46600689950 /* RatesList */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		27D972D33059F46600689950 /* RatesList */ = {
+			isa = PBXGroup;
+			children = (
+				27D972B83059D3C800689950 /* RatesViewModel.swift */,
+				27D972B33059D3C800689950 /* RatesListView.swift */,
+			);
+			path = RatesList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +256,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27D972BA3059D3C800689950 /* RatesListView.swift in Sources */,
+				27D972BB3059D3C800689950 /* KurTakipApp.swift in Sources */,
+				27D972BC3059D3C800689950 /* Rate.swift in Sources */,
+				27D972BD3059D3C800689950 /* RatesCache.swift in Sources */,
+				27D972BE3059D3C800689950 /* RateService.swift in Sources */,
+				27D972BF3059D3C800689950 /* RatesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
