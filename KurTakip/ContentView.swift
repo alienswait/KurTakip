@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = RatesViewModel()
+    @StateObject private var viewModel = RatesViewModel(service: RateService())
 
     var body: some View {
         Group {

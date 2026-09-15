@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct RateService {
+protocol RateServiceProtocol {
+    func fetchRates() async throws -> [Rate]
+}
+
+struct RateService: RateServiceProtocol {
     func fetchRates() async throws -> [Rate] {
         let url = URL(string: "https://www.tcmb.gov.tr/kurlar/today.xml")!
         let (data, response) = try await URLSession.shared.data(from: url)
