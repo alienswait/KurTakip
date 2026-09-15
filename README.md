@@ -1,5 +1,7 @@
 # KurTakip
 
+![Tests](https://github.com/alienswait/KurTakip/actions/workflows/main.yml/badge.svg)
+
 TCMB verisiyle çalışan iOS döviz kuru uygulaması. SwiftUI ile geliştiriliyor.
 
 <p align="center">
@@ -28,6 +30,14 @@ Ekran kodu verinin nereden geldiğini bilmiyor. ViewModel de XML diye bir
 Ağ ve önbellek katmanları protokol arkasında. ViewModel ne TCMB'yi tanıyor
 ne dosya sistemini; sadece "kur getiren bir şey" ve "kaydeden bir şey"
 olduğunu biliyor.
+
+## Testler
+
+ViewModel katmanı için birim testleri var. Ağ ve önbellek bağımlılıkları
+protokol arkasında olduğu için testler sahte uygulamalarla çalışıyor,
+internete ve diske hiç dokunmuyor.
+
+Her commit'te GitHub Actions üzerinde otomatik çalışıyorlar.
 
 
 ## Karşılaştığım sorunlar
