@@ -71,6 +71,8 @@ final class RateParser: NSObject, XMLParserDelegate {
         let value = buffer.trimmingCharacters(in: .whitespacesAndNewlines)
 
         switch elementName {
+        case "Isim":
+            name = value.capitalized(with: Locale(identifier: "tr_TR"))
         case "Unit":
             unit = Int(value) ?? 1
         case "ForexSelling":

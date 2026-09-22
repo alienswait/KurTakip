@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27214A0E306305A0007F2182 /* RateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27214A0D30630597007F2182 /* RateRow.swift */; };
 		27D972BA3059D3C800689950 /* RatesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B33059D3C800689950 /* RatesListView.swift */; };
 		27D972BB3059D3C800689950 /* KurTakipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B43059D3C800689950 /* KurTakipApp.swift */; };
 		27D972BC3059D3C800689950 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B53059D3C800689950 /* Rate.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27214A0D30630597007F2182 /* RateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateRow.swift; sourceTree = "<group>"; };
 		2794FDEE3047508000892133 /* KurTakip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KurTakip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D972B33059D3C800689950 /* RatesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesListView.swift; sourceTree = "<group>"; };
 		27D972B43059D3C800689950 /* KurTakipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KurTakipApp.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		27D972D33059F46600689950 /* RatesList */ = {
 			isa = PBXGroup;
 			children = (
+				27214A0D30630597007F2182 /* RateRow.swift */,
 				27D972B83059D3C800689950 /* RatesViewModel.swift */,
 				27D972B33059D3C800689950 /* RatesListView.swift */,
 			);
@@ -258,6 +261,7 @@
 			files = (
 				27D972BA3059D3C800689950 /* RatesListView.swift in Sources */,
 				27D972BB3059D3C800689950 /* KurTakipApp.swift in Sources */,
+				27214A0E306305A0007F2182 /* RateRow.swift in Sources */,
 				27D972BC3059D3C800689950 /* Rate.swift in Sources */,
 				27D972BD3059D3C800689950 /* RatesCache.swift in Sources */,
 				27D972BE3059D3C800689950 /* RateService.swift in Sources */,

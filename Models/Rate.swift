@@ -16,7 +16,7 @@ struct Rate: Identifiable, Codable {
     var id: String { code }
     
     var change: Double? {
-        guard let previousSelling, previousSelling != selling else { return nil }
+        guard let previousSelling, previousSelling != 0 else { return nil }
         return (selling - previousSelling) / previousSelling
         
     }

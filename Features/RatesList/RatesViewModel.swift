@@ -14,6 +14,7 @@ final class RatesViewModel: ObservableObject {
     @Published private(set) var rates: [Rate] = []
     @Published private(set) var isLoading = false
     @Published private(set) var errorMessage: String?
+    @Published private(set) var lastUpdated: Date?
 
     private let service: RateServiceProtocol
     private let cache: RatesCacheProtocol
@@ -26,6 +27,7 @@ final class RatesViewModel: ObservableObject {
     func load() async {
 
         let cachedRates = cache.load()
+
         if let cachedRates {
             rates = cachedRates
         }
@@ -46,7 +48,10 @@ final class RatesViewModel: ObservableObject {
                 return rate
             }
 
+            print("SONUÇ: ilk kurun previousSelling'i: \(rates.first?.previousSelling?.description ?? "nil")")
+
             cache.save(rates)
+            lastUpdated = .now
         } catch {
             if rates.isEmpty {
                 errorMessage = "Kurlar yüklenemedi. Bağlantını kontrol et."
