@@ -36,6 +36,7 @@ final class RateParser: NSObject, XMLParserDelegate {
     private var rates: [Rate] = []
     private var buffer = ""
     private var code = ""
+    private var name = ""
     private var unit = 1
     private var selling: Double?
 
@@ -55,6 +56,7 @@ final class RateParser: NSObject, XMLParserDelegate {
 
         if elementName == "Currency" {
             code = attributeDict["CurrencyCode"] ?? ""
+            name = ""
             unit = 1
             selling = nil
         }
@@ -75,7 +77,7 @@ final class RateParser: NSObject, XMLParserDelegate {
             selling = Double(value)
         case "Currency":
             if let selling {
-                rates.append(Rate(code: code, selling: selling / Double(unit)))
+                rates.append(Rate(code: code, name: name, selling: selling / Double(unit)))
             }
         default:
             break

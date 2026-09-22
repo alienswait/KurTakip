@@ -9,7 +9,15 @@ import Foundation
 
 struct Rate: Identifiable, Codable {
     let code: String
+    let name: String
     let selling: Double
+    var previousSelling: Double?
 
     var id: String { code }
+    
+    var change: Double? {
+        guard let previousSelling, previousSelling != selling else { return nil }
+        return (selling - previousSelling) / previousSelling
+        
+    }
 }

@@ -43,8 +43,8 @@ struct RatesViewModelTests {
     @Test func ServisBasariliysaKurlarYuklenir() async{
         
         let sahteKurlar = [
-            Rate(code: "USD", selling: 48.27),
-            Rate(code: "EUR", selling: 55.97)
+            Rate(code: "USD", name:"ABD Doları", selling: 48.27),
+            Rate(code: "EUR", name:"Euro", selling: 55.97)
         ]
         
         let servis = StubRateService(result: .success(sahteKurlar))
