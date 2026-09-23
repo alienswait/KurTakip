@@ -12,16 +12,20 @@ TCMB verisiyle çalışan iOS döviz kuru uygulaması. SwiftUI ile geliştiriliy
 
 ## Durum
 
-🚧 Geliştirme aşamasında. Şu an çalışan: kur listesi, TCMB bağlantısı,
-XML çözümleme, çevrimdışı erişim, yükleniyor ve hata durumları, birim testleri.
+🚧 Geliştirme aşamasında. Şu an çalışan: kur listesi (isim, fiyat, önceki kura göre
+değişim yüzdesi), arama, TCMB bağlantısı, XML çözümleme, çevrimdışı erişim,
+yükleniyor ve hata durumları, birim testleri.
 
 ## Yapı
 
 - `RateService` — TCMB'den veriyi indirir, HTTP durumunu kontrol eder
-- `RateParser` — gelen XML'i Rate nesnelerine çevirir
+- `RateParser` — gelen XML'i Rate nesnelerine çevirir (kod, isim, satış fiyatı)
 - `RatesCache` — kurları diske JSON olarak kaydeder ve okur
-- `RatesViewModel` — ekran durumunu yönetir (veri, yükleniyor, hata)
-- `ContentView` — sadece görüntüler
+- `RatesViewModel` — ekran durumunu yönetir (veri, yükleniyor, hata, son güncelleme
+  zamanı); yeni veri gelince cache'teki eski fiyatla karşılaştırıp değişim
+  yüzdesini hesaplar
+- `RateRow` — tek bir kur satırının görünümü (kod, isim, fiyat, değişim rozeti)
+- `ContentView` — başlık, arama çubuğu ve listeyi bir araya getirir, sadece görüntüler
 - `KurTakipTests` — ViewModel testleri
 
 Ekran kodu verinin nereden geldiğini bilmiyor. ViewModel de XML diye bir
@@ -65,6 +69,29 @@ boş. `Double("")` nil döndürdüğü için bu kayıtları listeye hiç eklemiy
 ikinci test, birincinin bıraktığı veriyi okuyup kalıyordu. Önbelleği de
 protokole çevirince her test kendi bellek içi kopyasıyla çalışır hale geldi.
 
+**Değişim yüzdesi rozeti hiç çıkmıyordu, `previousSelling` doluyken bile.**
+`Rate.change` içinde sıfıra bölmeyi engellemek için yazdığım guard yanlışlıkla
+`previousSelling != selling` olmuştu, olması gereken `previousSelling != 0`'dı.
+TCMB günde bir kez kur yayınladığı için aynı gün içinde `previousSelling` ve
+`selling` her zaman eşit çıkıyor, guard da bunu "geçersiz" sayıp `nil`
+döndürüyordu — tam da test ettiğim %0 değişim senaryosunu engelliyordu.
+ViewModel'e geçici `print`'ler, sonra `RateRow`'a geçici ham veri yazdırarak
+`previousSelling`'in doğru geldiğini ama `change`'in hep `nil` çıktığını
+görünce buldum.
+
+**Kur adları hep boş geliyordu.** Parser'daki switch'e `<Isim>` elementini
+okuyacak case'i eklerken Türkçe klavyeyle yanlışlıkla noktalı büyük `İ`
+yazmışım (`case "İsim":`), XML'deki eleman adıysa düz `I` ile `Isim`. Swift
+string karşılaştırması Unicode karakter karakter yaptığı için ikisi hiç
+eşleşmiyordu, `name` hep `""` kalıyordu.
+
+**Model'e yeni alan eklemek projeyi anlık olarak kırdı.** `Rate`'e `name`
+eklediğimde onu üreten `RateParser` ve test dosyasındaki sahte veriler
+güncellenene kadar proje derlenmedi — beklenen bir ara durumdu. Ayrıca `Rate`
+`Codable` olduğu için diskteki eski cache dosyası yeni alanla decode
+edilemedi; `RatesCache.load()` `try?` sayesinde sessizce `nil` döndürüp
+ağdan taze veri çekilmesini sağladı — kendi kendine iyileşen bir durum.
+
 
 ## Kararlar
 
@@ -72,6 +99,18 @@ protokole çevirince her test kendi bellek içi kopyasıyla çalışır hale gel
 kurlar gösteriliyor, ağ güncellemesi arkadan geliyor. Ağ hatası durumunda
 elde veri varsa hata ekranı yerine küçük bir uyarı satırı çıkıyor —
 eski veri, hiç veri olmamasından iyi.
+
+**Değişim yüzdesi neden ağa ekstra istek atmadan hesaplanıyor.** TCMB'nin
+bugünkü XML'i sadece o anki kuru veriyor, dünün kuru için ayrı bir arşiv
+isteği atmak gerekirdi. Bunun yerine `RatesCache`'in zaten tuttuğu bir
+önceki kur ile karşılaştırıyorum — ekstra ağ trafiği yok, mevcut cache-first
+mimariye uyuyor. Bedeli: uygulama ilk açıldığında veya cache boşken değişim
+gösterilemiyor, o durumda rozet hiç çizilmiyor.
+
+**Kur adları için Türkçe locale'e özel capitalize.** TCMB `<Isim>ABD
+DOLARI</Isim>` gibi tamamen büyük harfle veriyor. Düz `.capitalized`
+kullansaydım Türkçe'deki noktasız `ı` kuralını yanlış uygulardı,
+`.capitalized(with: Locale(identifier: "tr_TR"))` kullandım.
 
 **Neden JSON dosyası, neden SwiftData değil.** Veri küçük (20 kayıt,
 iki alan) ve ilişkisel değil. SwiftData'nın kurulum maliyeti bu boyutta
