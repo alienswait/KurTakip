@@ -5,7 +5,7 @@
 TCMB verisiyle çalışan iOS döviz kuru uygulaması. SwiftUI ile geliştiriliyor.
 
 <p align="center">
-  <img src="Screenshots/liste.png" width="250">
+  <img src="Screenshots/liste_v2.png" width="250">
   <img src="Screenshots/cevrimdisi.png" width="250">
   <img src="Screenshots/hata.png" width="250">
 </p>
