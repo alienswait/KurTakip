@@ -48,7 +48,7 @@ final class RatesViewModel: ObservableObject {
                 return rate
             }
 
-            print("SONUÇ: ilk kurun previousSelling'i: \(rates.first?.previousSelling?.description ?? "nil")")
+            
 
             cache.save(rates)
             lastUpdated = .now

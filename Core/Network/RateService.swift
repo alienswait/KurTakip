@@ -45,7 +45,6 @@ final class RateParser: NSObject, XMLParserDelegate {
         let parser = XMLParser(data: data)
         parser.delegate = self
         parser.parse()
-        print("Parser \(rates.count) kur buldu")
         return rates
     }
 
