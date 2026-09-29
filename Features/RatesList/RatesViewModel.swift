@@ -54,9 +54,9 @@ final class RatesViewModel: ObservableObject {
             lastUpdated = .now
         } catch {
             if rates.isEmpty {
-                errorMessage = "Kurlar yüklenemedi. Bağlantını kontrol et."
+                errorMessage = String(localized: "Kurlar yüklenemedi. Bağlantını kontrol et.")
             } else {
-                errorMessage = "Güncellenemedi, son kayıtlı kurlar gösteriliyor."
+                errorMessage = String(localized: "Güncellenemedi, son kayıtlı kurlar gösteriliyor")
             }
         }
 

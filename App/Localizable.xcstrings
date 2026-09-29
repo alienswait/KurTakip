@@ -1,0 +1,86 @@
+{
+  "sourceLanguage" : "tr",
+  "strings" : {
+    "Ara" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        }
+      }
+    },
+    "Bağlantı sorunu" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connection Problem"
+          }
+        }
+      }
+    },
+    "Güncellenemedi, son kayıtlı kurlar gösteriliyor" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not update. Displaying cached rates."
+          }
+        }
+      }
+    },
+    "Kurlar" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rates"
+          }
+        }
+      }
+    },
+    "Kurlar yüklenemedi. Bağlantını kontrol et." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to load rates. Check your connection."
+          }
+        }
+      }
+    },
+    "Kurlar yükleniyor..." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading rates..."
+          }
+        }
+      }
+    },
+    "TCMB · %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TCMB · %@"
+          }
+        }
+      }
+    },
+    "Tekrar dene" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try Again"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

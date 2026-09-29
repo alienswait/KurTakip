@@ -32,7 +32,7 @@ struct RateRow: View {
                     .font(.system(size: 16))
                 
                 if let change = rate.change {
-                                    Text("\(change >= 0 ? "▲" : "▼") \(abs(change), format: .percent.precision(.fractionLength(2)))")
+                                    Text(verbatim: "\(change >= 0 ? "▲" : "▼") \(abs(change).formatted(.percent.precision(.fractionLength(2))))")
                                         .font(.caption)
                                         .foregroundStyle(change>=0 ? .green : .red)
                                 }
