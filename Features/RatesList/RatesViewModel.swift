@@ -37,9 +37,12 @@ final class RatesViewModel: ObservableObject {
 
         do {
             let freshRates = try await service.fetchRates()
-
+            
+            
+            
+            
             let previousSellingByCode = Dictionary(
-                uniqueKeysWithValues: (cachedRates ?? []).map { ($0.code, $0.selling) }
+                uniqueKeysWithValues: cachedRates.orEmpty.map { ($0.code, $0.selling) }
             )
 
             rates = freshRates.map { rate in

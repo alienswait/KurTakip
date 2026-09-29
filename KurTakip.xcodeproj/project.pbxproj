@@ -41,6 +41,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		2752D599306C556200E35436 /* Extensions */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2794FDF03047508000892133 /* KurTakip */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = KurTakip;
@@ -105,6 +110,7 @@
 		27D972CE3059F3DE00689950 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2752D599306C556200E35436 /* Extensions */,
 				27D972D03059F41C00689950 /* Storage */,
 				27D972CF3059F3EF00689950 /* Network */,
 			);
@@ -169,6 +175,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				2752D599306C556200E35436 /* Extensions */,
 				2794FDF03047508000892133 /* KurTakip */,
 			);
 			name = KurTakip;
