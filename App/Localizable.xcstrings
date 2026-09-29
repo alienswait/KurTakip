@@ -31,12 +31,32 @@
         }
       }
     },
+    "Güncellenemedi, son kayıtlı kurlar gösteriliyor" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not update. Displaying cached rates."
+          }
+        }
+      }
+    },
     "Kurlar" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rates"
+          }
+        }
+      }
+    },
+    "Kurlar yüklenemedi. Bağlantını kontrol et." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed to load rates. Check your connection."
           }
         }
       }
