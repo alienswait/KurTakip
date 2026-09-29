@@ -1,16 +1,6 @@
 {
   "sourceLanguage" : "tr",
   "strings" : {
-    "%@ %@" : {
-      "localizations" : {
-        "tr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ %2$@"
-          }
-        }
-      }
-    },
     "Ara" : {
       "localizations" : {
         "en" : {
