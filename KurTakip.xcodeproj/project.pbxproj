@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		27214A0E306305A0007F2182 /* RateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27214A0D30630597007F2182 /* RateRow.swift */; };
+		2752D588306C439300E35436 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2752D587306C439300E35436 /* Localizable.xcstrings */; };
 		27D972BA3059D3C800689950 /* RatesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B33059D3C800689950 /* RatesListView.swift */; };
 		27D972BB3059D3C800689950 /* KurTakipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B43059D3C800689950 /* KurTakipApp.swift */; };
 		27D972BC3059D3C800689950 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D972B53059D3C800689950 /* Rate.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		27214A0D30630597007F2182 /* RateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateRow.swift; sourceTree = "<group>"; };
+		2752D587306C439300E35436 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2794FDEE3047508000892133 /* KurTakip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KurTakip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D972B33059D3C800689950 /* RatesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesListView.swift; sourceTree = "<group>"; };
 		27D972B43059D3C800689950 /* KurTakipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KurTakipApp.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				27D972B43059D3C800689950 /* KurTakipApp.swift */,
+				2752D587306C439300E35436 /* Localizable.xcstrings */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -218,11 +221,12 @@
 				};
 			};
 			buildConfigurationList = 2794FDE93047508000892133 /* Build configuration list for PBXProject "KurTakip" */;
-			developmentRegion = en;
+			developmentRegion = tr;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = 2794FDE53047508000892133;
 			minimizedProjectReferenceProxies = 1;
@@ -242,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2752D588306C439300E35436 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +351,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -402,6 +408,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -415,6 +422,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -446,6 +454,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
